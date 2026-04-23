@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suraz Shrestha — Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- fav icon -->
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <div id="wallpaper"></div>
+
+    <!-- MENU BAR -->
+    <div id="menubar">
+        <div class="menubar-left">
+            <div class="os-logo" id="apple-btn" title="System Menu"></div>
+            <div class="menu-item bold">Suraz Shrestha</div>
+            <div class="menu-item" onclick="openWindow('about')">About</div>
+            <div class="menu-item" onclick="openWindow('skills')">Skills</div>
+            <div class="menu-item" onclick="openWindow('projects')">Projects</div>
+            <div class="menu-item" onclick="openWindow('contact')">Contact</div>
+        </div>
+        <div class="menubar-right">
+            <span>🔍</span>
+            <span>📶</span>
+            <span>🔋</span>
+            <span id="clock">--:--</span>
+        </div>
+    </div>
+
+    <!-- APPLE MENU DROPDOWN -->
+    <div id="apple-menu">
+        <div class="apple-menu-item" onclick="openWindow('about')">😊 About Suraz Shrestha</div>
+        <div class="apple-menu-divider"></div>
+        <div class="apple-menu-item" onclick="showSpotlight()">🔍 Spotlight Search</div>
+        <div class="apple-menu-item" onclick="openWindow('skills')">⚙️ System Preferences (Skills)</div>
+        <div class="apple-menu-divider"></div>
+        <div class="apple-menu-item" onclick="openWindow('projects')">📁 Recent Projects</div>
+        <div class="apple-menu-item" onclick="openWindow('contact')">📬 Get In Touch</div>
+        <div class="apple-menu-item" onclick="openWindow('resume')">📄 View Resume</div>
+        <div class="apple-menu-divider"></div>
+        <div class="apple-menu-item" onclick="openWindow('terminal')">🖥️ Terminal</div>
+        <div class="apple-menu-divider"></div>
+        <div class="apple-menu-item" onclick="showNotif('💤 Sleep', 'Suraz never sleeps — he codes at 3am too.')">💤
+            Sleep</div>
+        <div class="apple-menu-item" onclick="showNotif('🔄 Restart', 'Loading new ideas... please wait.')">🔄 Restart
+        </div>
+        <div class="apple-menu-item" onclick="showNotif('⏻ Shut Down', 'Suraz.exe has stopped... just kidding.')">⏻ Shut
+            Down</div>
+        <div class="apple-menu-divider"></div>
+        <div class="apple-menu-item" onclick="showOSSelector()">🌐 Change OS Theme</div>
+    </div>
+
+    <!-- WINDOWS START MENU -->
+    <div id="windows-start-menu">
+        <div class="win-start-search">
+            <input type="text" placeholder="Type here to search" onfocus="this.blur(); showSpotlight();">
+        </div>
+        <div class="win-start-section">
+            <div class="win-start-header">Pinned</div>
+            <div class="win-start-grid">
+                <div class="win-start-item" onclick="openWindow('about'); closeAppleMenu();">
+                    <div class="w-icon" style="background: linear-gradient(135deg, #5ac8fa, #0a84ff);">👤</div>
+                    <span>About Me</span>
+                </div>
+                <div class="win-start-item" onclick="openWindow('skills'); closeAppleMenu();">
+                    <div class="w-icon" style="background: linear-gradient(135deg, #30d158, #1e8c3a);">⚙️</div>
+                    <span>Skills</span>
+                </div>
+                <div class="win-start-item" onclick="openWindow('projects'); closeAppleMenu();">
+                    <div class="w-icon" style="background: linear-gradient(135deg, #ff9f0a, #d4720a);">🗂️</div>
+                    <span>Projects</span>
+                </div>
+                <div class="win-start-item" onclick="openWindow('contact'); closeAppleMenu();">
+                    <div class="w-icon" style="background: linear-gradient(135deg, #ff375f, #c70024);">📬</div>
+                    <span>Contact</span>
+                </div>
+                <div class="win-start-item" onclick="openWindow('resume'); closeAppleMenu();">
+                    <div class="w-icon" style="background: linear-gradient(135deg, #bf5af2, #7b2ff7);">📄</div>
+                    <span>Resume</span>
+                </div>
+                <div class="win-start-item" onclick="openWindow('terminal'); closeAppleMenu();">
+                    <div class="w-icon" style="background: linear-gradient(135deg, #1c1c1e, #3a3a3c);">🖥️</div>
+                    <span>Terminal</span>
+                </div>
+            </div>
+        </div>
+        <div class="win-start-bottom">
+            <div class="win-profile" onclick="openWindow('about'); closeAppleMenu();">
+                <div class="win-avatar">S</div>
+                <span>Suraz Shrestha</span>
+            </div>
+            <div class="win-power" onclick="showOSSelector()" title="Change OS">⏻</div>
+        </div>
+    </div>
+
+    <!-- DESKTOP -->
+    <div id="desktop">
+        <div class="desktop-icon" ondblclick="openWindow('about')">
+            <div class="icon-img folder-icon"></div>
+            <div class="icon-label">About Me</div>
+        </div>
+        <div class="desktop-icon" ondblclick="openWindow('skills')">
+            <div class="icon-img"
+                style="background:linear-gradient(160deg,#30d158,#27a347);box-shadow:0 4px 16px rgba(39,201,63,0.4);font-size:26px;">
+                ⚙️</div>
+            <div class="icon-label">Skills</div>
+        </div>
+        <div class="desktop-icon" ondblclick="openWindow('projects')">
+            <div class="icon-img folder-icon"
+                style="background:linear-gradient(160deg,#ff9f0a,#ff6b00);box-shadow:0 4px 16px rgba(255,159,10,0.4);">
+                📁</div>
+            <div class="icon-label">Projects</div>
+        </div>
+        <div class="desktop-icon" ondblclick="openWindow('contact')">
+            <div class="icon-img"
+                style="background:linear-gradient(160deg,#ff375f,#d70015);box-shadow:0 4px 16px rgba(255,55,95,0.4);font-size:26px;">
+                📬</div>
+            <div class="icon-label">Contact</div>
+        </div>
+        <div class="desktop-icon" ondblclick="openWindow('resume')">
+            <div class="icon-img"
+                style="background:linear-gradient(160deg,#bf5af2,#9b59b6);box-shadow:0 4px 16px rgba(191,90,242,0.4);font-size:26px;">
+                📄</div>
+            <div class="icon-label">Resume.pdf</div>
+        </div>
+        <div class="desktop-icon" ondblclick="openWindow('terminal')">
+            <div class="icon-img"
+                style="background:linear-gradient(160deg,#1c1c1e,#3a3a3c);box-shadow:0 4px 16px rgba(0,0,0,0.5);font-size:26px;">
+                🖥️</div>
+            <div class="icon-label">Terminal</div>
+        </div>
+    </div>
+
+    <!-- WINDOWS -->
+
+    <!-- ABOUT WINDOW -->
+    <div class="window" id="win-about" style="width:520px;height:440px;top:80px;left:80px;">
+        <div class="window-titlebar" data-win="about">
+            <div class="traffic-lights">
+                <div class="tl red" onclick="closeWindow('about')"></div>
+                <div class="tl yellow" onclick="minWindow('about')"></div>
+                <div class="tl green" onclick="maxWindow('about')"></div>
+            </div>
+            <div class="window-title">About Me</div>
+        </div>
+        <div class="window-body">
+            <div class="about-hero">
+                <div class="avatar-wrap">S</div>
+                <div>
+                    <div class="win-section">
+                        <h1>Suraz Shrestha</h1>
+                    </div>
+                    <p style="margin:0;font-size:14px;color:#5ac8fa;font-weight:500;">Full-Stack Developer & Creative
+                        Coder</p>
+                    <p style="margin:4px 0 0;font-size:13px;color:var(--text-dim);">📍 Nepal &nbsp;·&nbsp; 💼 Open to
+                        Work</p>
+                </div>
+            </div>
+            <div class="win-section">
+                <h3>Hello, World! 👋</h3>
+                <p>Hey! I'm Suraz Shrestha — a passionate developer from Nepal who loves building beautiful, functional
+                    digital experiences. I believe in writing clean code, designing with intention, and solving problems
+                    with creativity.</p>
+                <p>When I'm not coding, you'll find me exploring new technologies, contributing to open source, or
+                    sipping chai while watching the Himalayas 🏔️.</p>
+            </div>
+            <div class="divider"></div>
+            <div class="win-section">
+                <h3>Quick Facts</h3>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;">
+                    <span class="tag">🎓 CS Graduate</span>
+                    <span class="tag green">✅ Available for Hire</span>
+                    <span class="tag purple">🧠 Problem Solver</span>
+                    <span class="tag orange">☕ Coffee Addict</span>
+                    <span class="tag">🇳🇵 Made in Nepal</span>
+                    <span class="tag green">🌙 Night Owl Coder</span>surajshrestha7.github.io
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="win-section">
+                <h3>What I Do</h3>
+                <p>I specialize in building full-stack web applications with modern frameworks. From pixel-perfect UIs
+                    to robust backend architectures — I love the full journey from idea to deployment.</p>
+            </div>
+        </div>
+        <div class="window-resize"></div>
+    </div>
+
+    <!-- SKILLS WINDOW -->
+    <div class="window" id="win-skills" style="width:480px;height:500px;top:80px;left:200px;">
+        <div class="window-titlebar" data-win="skills">
+            <div class="traffic-lights">
+                <div class="tl red" onclick="closeWindow('skills')"></div>
+                <div class="tl yellow" onclick="minWindow('skills')"></div>
+                <div class="tl green" onclick="maxWindow('skills')"></div>
+            </div>
+            <div class="window-title">Skills & Expertise</div>
+        </div>
+        <div class="window-body">
+            <div class="win-section">
+                <h2>Technical Skills</h2>
+                <h3>Frontend</h3>
+                <div class="skill-bar-wrap">
+                    <div class="skill-bar-label"><span>HTML / CSS</span><span>95%</span></div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" data-w="95"></div>
+                    </div>
+                </div>
+                <div class="skill-bar-wrap">
+                    <div class="skill-bar-label"><span>JavaScript / TypeScript</span><span>88%</span></div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" data-w="88"></div>
+                    </div>
+                </div>
+                <div class="skill-bar-wrap">
+                    <div class="skill-bar-label"><span>React.js / Next.js</span><span>85%</span></div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" data-w="85"></div>
+                    </div>
+                </div>
+                <div class="skill-bar-wrap">
+                    <div class="skill-bar-label"><span>Tailwind CSS</span><span>90%</span></div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" data-w="90"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="win-section">
+                <h3>Backend</h3>
+                <div class="skill-bar-wrap">
+                    <div class="skill-bar-label"><span>Node.js / Express</span><span>82%</span></div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" data-w="82"></div>
+                    </div>
+                </div>
+                <div class="skill-bar-wrap">
+                    <div class="skill-bar-label"><span>Python / Django</span><span>75%</span></div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" data-w="75"></div>
+                    </div>
+                </div>
+                <div class="skill-bar-wrap">
+                    <div class="skill-bar-label"><span>MongoDB / PostgreSQL</span><span>78%</span></div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-fill" data-w="78"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="win-section">
+                <h3>Tools & Others</h3>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+                    <span class="tag">Git / GitHub</span>
+                    <span class="tag green">Docker</span>
+                    <span class="tag purple">Figma</span>
+                    <span class="tag orange">VS Code</span>
+                    <span class="tag">REST APIs</span>
+                    <span class="tag green">GraphQL</span>
+                    <span class="tag purple">AWS / Vercel</span>
+                    <span class="tag orange">Linux</span>
+                    <span class="tag">Firebase</span>
+                    <span class="tag green">Agile / Scrum</span>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <div class="win-section">
+                <h3>Soft Skills</h3>
+                <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;">
+                    <span class="tag">🗣️ Communication</span>
+                    <span class="tag green">🤝 Teamwork</span>
+                    <span class="tag purple">🧩 Problem Solving</span>
+                    <span class="tag orange">🚀 Fast Learner</span>
+                    <span class="tag">⏱️ Time Management</span>
+                </div>
+            </div>
+        </div>
+        <div class="window-resize"></div>
+    </div>
+
+    <!-- PROJECTS WINDOW -->
+    <div class="window" id="win-projects" style="width:500px;height:480px;top:100px;left:320px;">
+        <div class="window-titlebar" data-win="projects">
+            <div class="traffic-lights">
+                <div class="tl red" onclick="closeWindow('projects')"></div>
+                <div class="tl yellow" onclick="minWindow('projects')"></div>
+                <div class="tl green" onclick="maxWindow('projects')"></div>
+            </div>
+            <div class="window-title">Projects</div>
+        </div>
+        <div class="window-body">
+            <div class="win-section">
+                <h2>My Work 🚀</h2>
+                <div class="project-card">
+                    <h4>🛒 E-Commerce Platform</h4>
+                    <p>A full-stack online store with cart, payment gateway, and admin panel. Built with React, Node.js,
+                        and MongoDB.</p>
+                    <div><span class="tag">React</span><span class="tag green">Node.js</span><span
+                            class="tag purple">MongoDB</span><span class="tag orange">Stripe</span></div>
+                </div>
+                <div class="project-card">
+                    <h4>🧠 AI Chat Assistant</h4>
+                    <p>An AI-powered chatbot interface with conversation history, context awareness, and multiple model
+                        support.</p>
+                    <div><span class="tag">Next.js</span><span class="tag green">OpenAI API</span><span
+                            class="tag purple">Tailwind</span></div>
+                </div>
+                <div class="project-card">
+                    <h4>📊 Analytics Dashboard</h4>
+                    <p>Real-time data visualization dashboard for business metrics with dynamic charts and filters.</p>
+                    <div><span class="tag">React</span><span class="tag green">D3.js</span><span
+                            class="tag orange">Firebase</span></div>
+                </div>
+                <div class="project-card">
+                    <h4>📱 Task Manager App</h4>
+                    <p>Cross-platform productivity app with drag-and-drop boards, deadlines, and team collaboration.</p>
+                    <div><span class="tag">React Native</span><span class="tag green">PostgreSQL</span><span
+                            class="tag purple">Redux</span></div>
+                </div>
+                <div class="project-card">
+                    <h4>🌐 Portfolio Website (This One!)</h4>
+                    <p>A macOS-inspired portfolio page built with vanilla HTML, CSS, and JavaScript. Fully interactive.
+                    </p>
+                    <div><span class="tag">HTML</span><span class="tag green">CSS</span><span
+                            class="tag orange">JavaScript</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="window-resize"></div>
+    </div>
+
+    <!-- CONTACT WINDOW -->
+    <div class="window" id="win-contact" style="width:400px;height:430px;top:120px;left:160px;">
+        <div class="window-titlebar" data-win="contact">
+            <div class="traffic-lights">
+                <div class="tl red" onclick="closeWindow('contact')"></div>
+                <div class="tl yellow" onclick="minWindow('contact')"></div>
+                <div class="tl green" onclick="maxWindow('contact')"></div>
+            </div>
+            <div class="window-title">Contact</div>
+        </div>
+        <div class="window-body">
+            <div class="win-section">
+                <h2>Get In Touch <i class="fa-regular fa-hand-peace" style="color: #ffcc4d; margin-left: 4px;"></i></h2>
+                <p>I'm always open to new opportunities, collaborations, or just a friendly chat. Reach out anytime!</p>
+            </div>
+            <div class="contact-row" onclick="showNotif('Email Copied!','suraz7.21@proton.me has been copied.')">
+                <i class="fa-solid fa-envelope"
+                    style="color: #ea4335; font-size: 16px; width: 20px; text-align: center;"></i> suraz7.21@proton.me
+            </div>
+            <div class="contact-row" onclick="showNotif('Phone Copied!','9765408063 has been copied.')">
+                <i class="fa-solid fa-phone"
+                    style="color: #34a853; font-size: 16px; width: 20px; text-align: center;"></i> +977 9765408063
+            </div>
+            <div class="contact-row" onclick="showNotif('LinkedIn','Opening LinkedIn profile...')">
+                <i class="fa-brands fa-linkedin"
+                    style="color: #0077b5; font-size: 16px; width: 20px; text-align: center;"></i>
+                linkedin.com/in/surajshrestha
+            </div>
+            <div class="contact-row" onclick="showNotif('GitHub','Opening GitHub profile...')">
+                <i class="fa-brands fa-github"
+                    style="color: #ffffff; font-size: 16px; width: 20px; text-align: center;"></i>
+                github.com/surajshrestha7
+            </div>
+            <div class="contact-row" onclick="showNotif('Website','Opening Website...')">
+                <i class="fa-solid fa-globe"
+                    style="color: #4285f4; font-size: 16px; width: 20px; text-align: center;"></i> surajshrestha7.com.np
+            </div>
+            <div class="contact-row" onclick="showNotif('Location','Kathmandu, Nepal')">
+                <i class="fa-solid fa-location-dot"
+                    style="color: #ea4335; font-size: 16px; width: 20px; text-align: center;"></i> Kathmandu, Nepal
+            </div>
+            <div style="margin-top:16px;text-align:center;">
+                <div style="display:inline-block;padding:10px 28px;background:var(--accent);border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:opacity 0.2s;"
+                    onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'"
+                    onclick="showNotif('Message Sent!','Thanks for reaching out, Suraz will reply soon!')">
+                    <i class="fa-solid fa-paper-plane" style="margin-right: 6px;"></i> Say Hello
+                </div>
+            </div>
+        </div>
+        <div class="window-resize"></div>
+    </div>
+
+    <!-- RESUME WINDOW -->
+    <div class="window" id="win-resume" style="width:460px;height:480px;top:90px;left:240px;">
+        <div class="window-titlebar" data-win="resume">
+            <div class="traffic-lights">
+                <div class="tl red" onclick="closeWindow('resume')"></div>
+                <div class="tl yellow" onclick="minWindow('resume')"></div>
+                <div class="tl green" onclick="maxWindow('resume')"></div>
+            </div>
+            <div class="window-title">Resume.pdf</div>
+        </div>
+        <div class="window-body">
+            <div
+                style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:20px;margin-bottom:16px;">
+                <div style="text-align:center;margin-bottom:16px;">
+                    <div style="font-size:40px;">📄</div>
+                    <div style="font-size:18px;font-weight:700;color:white;margin-top:8px;">Suraz Shrestha</div>
+                    <div style="font-size:13px;color:var(--accent);">Full-Stack Developer</div>
+                </div>
+                <div class="divider"></div>
+                <!-- <div class="win-section">
+                    <h3>Education</h3>
+                    <p><strong style="color:white;">B.Sc. Computer Science</strong><br>Tribhuvan University, Nepal ·
+                        2020–2024</p>
+                </div> -->
+                <div class="divider"></div>
+                <div class="win-section">
+                    <h3>Experience</h3>
+                    <p><strong style="color:white;">Junior Developer @ TechNepal</strong><br><span
+                            style="color:var(--accent);font-size:12px;">Jan 2024 – Present</span><br>Building scalable
+                        web apps and REST APIs.</p>
+                    <p><strong style="color:white;">Freelance Developer</strong><br><span
+                            style="color:var(--accent);font-size:12px;">2022 – 2024</span><br>Delivered 15+ client
+                        projects across e-commerce, portfolios, and dashboards.</p>
+                </div>
+                <div class="divider"></div>
+                <div class="win-section">
+                    <h3>Achievements</h3>
+                    <p>🏆 1st Place — TechFest Nepal 2023 Hackathon<br>🎖️ Open Source Contributor — 200+ GitHub
+                        stars<br>📜 AWS Certified Cloud Practitioner</p>
+                </div>
+            </div>
+            <div style="text-align:center;">
+                <div style="display:inline-block;padding:10px 28px;background:linear-gradient(135deg,#0a84ff,#5ac8fa);border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;color:white;"
+                    onclick="showNotif('⬇️ Downloading...','Resume_Suraz_Shrestha.pdf download started!')">
+                    ⬇️ Download Resume
+                </div>
+            </div>
+        </div>
+        <div class="window-resize"></div>
+    </div>
+
+    <!-- TERMINAL WINDOW -->
+    <div class="window" id="win-terminal" style="width:520px;height:360px;top:100px;left:140px;">
+        <div class="window-titlebar" data-win="terminal">
+            <div class="traffic-lights">
+                <div class="tl red" onclick="closeWindow('terminal')"></div>
+                <div class="tl yellow" onclick="minWindow('terminal')"></div>
+                <div class="tl green" onclick="maxWindow('terminal')"></div>
+            </div>
+            <div class="window-title">Terminal — suraz@macbook</div>
+        </div>
+        <div class="window-body" id="terminal-body"
+            style="background:#0d0d0d;font-family:'Courier New',monospace;font-size:13px;color:#00ff88;padding:16px;">
+            <div id="terminal-output"></div>
+            <div style="display:flex;align-items:center;gap:6px;margin-top:4px;">
+                <span style="color:#5ac8fa;">suraz@macbook</span><span style="color:white;">:</span><span
+                    style="color:#ff9f0a;">~</span><span style="color:white;">$</span>
+                <input id="terminal-input" type="text"
+                    style="flex:1;background:transparent;border:none;outline:none;color:#00ff88;font-family:'Courier New',monospace;font-size:13px;"
+                    placeholder="type a command..." autocomplete="off">
+            </div>
+        </div>
+        <div class="window-resize"></div>
+    </div>
+
+    <!-- SPOTLIGHT -->
+    <div id="spotlight-overlay" onclick="hideSpotlight(event)">
+        <div id="spotlight-box" onclick="event.stopPropagation()">
+            <input id="spotlight-input" type="text" placeholder="🔍  Search Suraz's portfolio..."
+                oninput="spotlightSearch(this.value)" onkeydown="spotlightKey(event)">
+            <div id="spotlight-results"></div>
+        </div>
+    </div>
+
+    <!-- DOCK -->
+    <div id="dock">
+        <div class="dock-item" ondblclick="openWindow('about')">
+            <div class="dock-icon" style="background:linear-gradient(160deg,#5ac8fa,#0a84ff);">👤</div>
+            <div class="dock-label">About Me</div>
+            <div class="dock-dot"></div>
+        </div>
+        <div class="dock-item" ondblclick="openWindow('skills')">
+            <div class="dock-icon" style="background:linear-gradient(160deg,#30d158,#1e8c3a);">⚙️</div>
+            <div class="dock-label">Skills</div>
+        </div>
+        <div class="dock-item" ondblclick="openWindow('projects')">
+            <div class="dock-icon" style="background:linear-gradient(160deg,#ff9f0a,#d4720a);">🗂️</div>
+            <div class="dock-label">Projects</div>
+        </div>
+        <div class="dock-item" ondblclick="openWindow('contact')">
+            <div class="dock-icon" style="background:linear-gradient(160deg,#ff375f,#c70024);">📬</div>
+            <div class="dock-label">Contact</div>
+        </div>
+        <div class="dock-item" ondblclick="openWindow('resume')">
+            <div class="dock-icon" style="background:linear-gradient(160deg,#bf5af2,#7b2ff7);">📄</div>
+            <div class="dock-label">Resume</div>
+        </div>
+        <div class="dock-separator"></div>
+        <div class="dock-item" ondblclick="openWindow('terminal')">
+            <div class="dock-icon" style="background:linear-gradient(160deg,#1c1c1e,#3a3a3c);">🖥️</div>
+            <div class="dock-label">Terminal</div>
+        </div>
+        <div class="dock-item" onclick="showSpotlight()" id="dock-spotlight-btn">
+            <div class="dock-icon" style="background:linear-gradient(160deg,#636366,#48484a);">🔍</div>
+            <div class="dock-label" id="dock-spotlight-lbl">Spotlight</div>
+        </div>
+    </div>
+
+    <!-- OS SELECTOR OVERLAY -->
+    <div id="os-selector-overlay">
+        <div class="os-selector-box">
+            <h2>Select Experience</h2>
+            <p>Choose your preferred operating system layout</p>
+            <div class="os-options">
+                <div class="os-option" onclick="setTheme('mac')">
+                    <div class="os-option-icon" style="background:#282828;"><svg viewBox="0 0 170 170" width="22"
+                            height="22" fill="white">
+                            <path
+                                d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.74 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.92.21-9.84-1.96-14.74-6.53-3.13-2.73-7.1-7.43-11.92-14.1-5.04-6.93-9.56-15.35-13.53-25.26-4.14-10.22-6.2-20.37-6.2-30.45 0-12.57 2.92-23.49 8.75-32.74 5.91-9.33 14.18-14.65 24.8-15.96 4.79-.53 9.94.88 15.46 4.23 5.51 3.36 9.42 5.04 11.75 5.04 2.12 0 6.66-1.93 13.6-5.8 7.37-4.04 14.19-5.63 20.45-4.78 8.1.91 15.1 3.51 21 7.82 5.09 3.65 9.06 8.35 11.92 14.1-10.15 6.03-15.13 14.47-14.94 25.32.18 9.97 3.86 18.25 11.05 24.84 2.87 2.65 6.23 4.93 10.08 6.84-2.44 6.78-5.46 12.83-9.06 18.17zM110.13 26.66c-.66 7.42-3.8 14.53-9.43 21.32-6.17 7.4-13.67 11.66-22.5 12.78-1.07-7.7 2.4-15.3 10.4-22.95 5.58-5.32 12.44-8.8 19.38-9.98.05.28.09.56.09.83h2.06z" />
+                        </svg></div>
+                    <div class="os-option-label">macOS</div>
+                </div>
+                <div class="os-option" onclick="setTheme('windows')">
+                    <div class="os-option-icon" style="background:#0078d4;"><svg viewBox="0 0 88 88" width="22"
+                            height="22">
+                            <rect x="0" y="0" width="40" height="40" fill="white" rx="2" />
+                            <rect x="44" y="0" width="40" height="40" fill="white" rx="2" />
+                            <rect x="0" y="44" width="40" height="40" fill="white" rx="2" />
+                            <rect x="44" y="44" width="40" height="40" fill="white" rx="2" />
+                        </svg></div>
+                    <div class="os-option-label">Windows 11</div>
+                </div>
+                <div class="os-option" onclick="setTheme('linux')">
+                    <div class="os-option-icon" style="background:#e95420;"><svg viewBox="0 0 24 24" width="22"
+                            height="22" fill="white">
+                            <circle cx="5" cy="5" r="2" />
+                            <circle cx="12" cy="5" r="2" />
+                            <circle cx="19" cy="5" r="2" />
+                            <circle cx="5" cy="12" r="2" />
+                            <circle cx="12" cy="12" r="2" />
+                            <circle cx="19" cy="12" r="2" />
+                            <circle cx="5" cy="19" r="2" />
+                            <circle cx="12" cy="19" r="2" />
+                            <circle cx="19" cy="19" r="2" />
+                        </svg></div>
+                    <div class="os-option-label">Ubuntu</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="javascript/script.js"></script>
+</body>
+
+</html>
