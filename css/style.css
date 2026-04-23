@@ -26,6 +26,42 @@
             user-select: none;
         }
 
+        /* BOOT SCREEN */
+        #boot-screen {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease-in-out;
+        }
+        .boot-loader {
+            width: 200px;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .boot-loader-bar {
+            height: 100%;
+            width: 0%;
+            background: #fff;
+            animation: loadBar 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        .boot-text {
+            color: rgba(255,255,255,0.6);
+            font-size: 13px;
+        }
+        @keyframes loadBar {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
         /* WALLPAPER */
         #wallpaper {
             position: fixed;
@@ -396,7 +432,7 @@
         }
 
         .folder-icon::before {
-            content: '';
+            /* content: ''; */
             position: absolute;
             top: -8px;
             left: 6px;
@@ -410,7 +446,7 @@
             content: '';
             position: absolute;
             inset: 8px 6px 6px;
-            background: rgba(255, 255, 255, 0.15);
+            /* background: rgba(255, 255, 255, 0.15); */
             border-radius: 4px;
         }
 
@@ -503,6 +539,13 @@
 
         .traffic-lights:hover .tl {
             color: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Always show symbols on touch/mobile devices */
+        @media (hover: none), (pointer: coarse) {
+            .tl {
+                color: rgba(0, 0, 0, 0.6) !important;
+            }
         }
 
         .tl:hover {
@@ -725,6 +768,152 @@
             margin: 18px 0;
         }
 
+        /* WIDGETS */
+        #widgets-container {
+            position: fixed;
+            top: 40px;
+            right: 20px;
+            width: 280px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            z-index: 100;
+        }
+
+        .widget {
+            background: rgba(30, 30, 40, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            color: white;
+            transition: transform 0.2s;
+        }
+
+        .widget:hover {
+            transform: scale(1.02);
+        }
+
+        /* Time Widget */
+        .time-widget {
+            text-align: center;
+        }
+
+        #widget-time {
+            font-size: 48px;
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 4px;
+            background: linear-gradient(135deg, #fff, #a0c4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        #widget-date {
+            font-size: 14px;
+            color: var(--text-dim);
+            font-weight: 500;
+        }
+
+        /* Weather Widget */
+        .weather-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .weather-temp {
+            font-size: 32px;
+            font-weight: 500;
+        }
+
+        .weather-desc {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .weather-highlow {
+            font-size: 12px;
+            color: var(--text-dim);
+            margin-top: 4px;
+        }
+
+        /* Calendar Widget */
+        .calendar-header {
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .calendar-days-header {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            text-align: center;
+            font-size: 10px;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            text-align: center;
+        }
+
+        .calendar-day {
+            font-size: 12px;
+            padding: 4px 0;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .calendar-day:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .calendar-day.today {
+            background: #ff3b30;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .calendar-day.empty {
+            pointer-events: none;
+        }
+
+        body.theme-windows #widgets-container {
+            right: 20px;
+            left: auto;
+        }
+
+        @media (max-width: 768px) {
+            #widgets-container {
+                right: 0;
+                left: 0;
+                top: auto;
+                bottom: 80px;
+                width: 100vw;
+                flex-direction: row;
+                overflow-x: auto;
+                transform: scale(0.85);
+                transform-origin: top center;
+                padding: 0 20px;
+                gap: 16px;
+                scrollbar-width: none; /* Firefox */
+            }
+            #widgets-container::-webkit-scrollbar {
+                display: none; /* Chrome/Safari */
+            }
+            .widget {
+                flex: 0 0 260px; /* fixed width for horizontal scrolling */
+                margin-bottom: 0;
+            }
+        }
+
         /* DOCK */
         #dock {
             position: fixed;
@@ -938,6 +1127,120 @@
             background: var(--accent);
             border-radius: 6px;
         }
+
+        /* ── NEW APPS CSS ── */
+        
+        /* Music App */
+        .music-header {
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 42, 95, 0.1), transparent);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .music-header h2 { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+        .music-header p { font-size: 13px; color: var(--text-dim); }
+        
+        .music-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        .music-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .music-item:hover { background: rgba(255,255,255,0.08); }
+        .music-item img { width: 40px; height: 40px; border-radius: 6px; }
+        .music-item-info { flex: 1; }
+        .music-item-title { font-size: 14px; font-weight: 600; color: white; }
+        .music-item-artist { font-size: 12px; color: var(--text-dim); }
+        
+        .music-player {
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .music-now-playing {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        .music-now-playing img { width: 48px; height: 48px; border-radius: 8px; }
+        
+        /* Messages App */
+        .messages-body { background: rgba(20,20,25,0.6); }
+        .chat-header {
+            padding: 16px;
+            background: rgba(30, 30, 40, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .chat-avatar {
+            width: 36px; height: 36px; border-radius: 50%;
+            background: linear-gradient(135deg, #0a84ff, #5ac8fa);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; font-size: 16px;
+        }
+        .chat-history {
+            flex: 1; padding: 16px; overflow-y: auto;
+            display: flex; flex-direction: column; gap: 12px;
+        }
+        .chat-bubble {
+            max-width: 75%; padding: 10px 14px; border-radius: 18px;
+            font-size: 14px; line-height: 1.4;
+        }
+        .chat-bubble.received {
+            background: rgba(255, 255, 255, 0.1);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+        .chat-bubble.sent {
+            background: #0a84ff; color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+        .chat-input-area {
+            padding: 12px 16px;
+            background: rgba(30, 30, 40, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex; gap: 10px;
+        }
+        .chat-input-area input {
+            flex: 1; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px; padding: 8px 16px; color: white; outline: none;
+        }
+        .chat-send {
+            width: 34px; height: 34px; border-radius: 50%; border: none;
+            background: #0a84ff; color: white; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        
+        /* Browser App */
+        .browser-titlebar { background: #e0e0e0; color: #333; padding-right: 16px; }
+        .browser-nav { display: flex; gap: 16px; margin-left: 16px; color: #666; font-size: 14px; }
+        .browser-address-bar {
+            flex: 1; background: #fff; margin: 0 16px; padding: 4px 12px;
+            border-radius: 6px; font-size: 12px; color: #333; text-align: center;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .cert-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;
+        }
+        .cert-card {
+            background: white; border-radius: 12px; padding: 20px; text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05);
+        }
+        .cert-ribbon { font-size: 40px; color: #ff9f0a; margin-bottom: 12px; }
+        .cert-card h3 { font-size: 16px; color: #111; margin-bottom: 8px; }
+        .cert-card p { font-size: 13px; color: #666; margin-bottom: 12px; }
+        .cert-date { font-size: 11px; color: #999; font-weight: 600; text-transform: uppercase; }
 
         /* ── OS SELECTOR OVERLAY ── */
         #os-selector-overlay {
@@ -1296,7 +1599,7 @@
                 padding: 10px;
                 justify-content: start;
                 padding-top: 30px;
-
+                padding-bottom: 200px; /* Room for widgets at the bottom */
             }
             
             .desktop-icon {

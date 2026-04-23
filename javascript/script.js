@@ -1,4 +1,4 @@
-// ── CLOCK ──
+// ── CLOCK & WIDGETS ──
 function updateClock() {
     const now = new Date();
     let h = now.getHours(), m = now.getMinutes();
@@ -6,8 +6,51 @@ function updateClock() {
     h = h % 12 || 12;
     document.getElementById('clock').textContent =
         `${['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][now.getDay()]} ${h}:${String(m).padStart(2, '0')} ${ampm}`;
+        
+    // Update Widget Time
+    const wTime = document.getElementById('widget-time');
+    if (wTime) {
+        wTime.textContent = `${h}:${String(m).padStart(2, '0')}`;
+    }
+    const wDate = document.getElementById('widget-date');
+    if (wDate) {
+        const options = { weekday: 'long', month: 'long', day: 'numeric' };
+        wDate.textContent = now.toLocaleDateString(undefined, options);
+    }
 }
 updateClock(); setInterval(updateClock, 1000);
+
+// ── CALENDAR WIDGET ──
+function renderCalendar() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = date.getMonth();
+    
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const calMonthYear = document.getElementById('calendar-month-year');
+    if(calMonthYear) calMonthYear.textContent = `${monthNames[month]} ${year}`;
+    
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    
+    const grid = document.getElementById('calendar-grid');
+    if(!grid) return;
+    grid.innerHTML = '';
+    
+    // Empty slots
+    for (let i = 0; i < firstDay; i++) {
+        grid.innerHTML += `<div class="calendar-day empty"></div>`;
+    }
+    
+    // Days
+    const today = date.getDate();
+    for (let i = 1; i <= daysInMonth; i++) {
+        const isToday = (i === today) ? ' today' : '';
+        grid.innerHTML += `<div class="calendar-day${isToday}">${i}</div>`;
+    }
+}
+document.addEventListener('DOMContentLoaded', renderCalendar);
+renderCalendar();
 
 // ── OS SELECTOR & THEMING ──
 const svgMac = `<svg viewBox="0 0 170 170" width="15" height="15" fill="currentColor"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.74 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.92.21-9.84-1.96-14.74-6.53-3.13-2.73-7.1-7.43-11.92-14.1-5.04-6.93-9.56-15.35-13.53-25.26-4.14-10.22-6.2-20.37-6.2-30.45 0-12.57 2.92-23.49 8.75-32.74 5.91-9.33 14.18-14.65 24.8-15.96 4.79-.53 9.94.88 15.46 4.23 5.51 3.36 9.42 5.04 11.75 5.04 2.12 0 6.66-1.93 13.6-5.8 7.37-4.04 14.19-5.63 20.45-4.78 8.1.91 15.1 3.51 21 7.82 5.09 3.65 9.06 8.35 11.92 14.1-10.15 6.03-15.13 14.47-14.94 25.32.18 9.97 3.86 18.25 11.05 24.84 2.87 2.65 6.23 4.93 10.08 6.84-2.44 6.78-5.46 12.83-9.06 18.17zM110.13 26.66c-.66 7.42-3.8 14.53-9.43 21.32-6.17 7.4-13.67 11.66-22.5 12.78-1.07-7.7 2.4-15.3 10.4-22.95 5.58-5.32 12.44-8.8 19.38-9.98.05.28.09.56.09.83h2.06z"/></svg>`;
@@ -59,10 +102,11 @@ function openWindow(id) {
     el.classList.add('active');
     el.classList.remove('minimized');
     el.style.zIndex = ++zTop;
-    // animate skill bars when skills window opens
     if (id === 'skills') setTimeout(animateSkillBars, 100);
     // boot terminal
     if (id === 'terminal') bootTerminal();
+    // fetch music
+    if (id === 'music') fetchMusic();
     // bring to front on click
     el.addEventListener('mousedown', () => { el.style.zIndex = ++zTop; }, { once: false });
 }
@@ -333,3 +377,82 @@ document.querySelectorAll('.desktop-icon, .dock-item').forEach(icon => {
         if (clicks === 2) { clicks = 0; icon.ondblclick && icon.ondblclick(); }
     });
 });
+
+// ── BOOT SCREEN ──
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const bs = document.getElementById('boot-screen');
+        if (bs) {
+            bs.style.opacity = '0';
+            setTimeout(() => bs.remove(), 800);
+        }
+    }, 2000); // 2 second mock loading
+});
+
+// ── MUSIC APP (iTunes API) ──
+let musicFetched = false;
+async function fetchMusic() {
+    if (musicFetched) return;
+    musicFetched = true;
+    const list = document.getElementById('music-list');
+    if (!list) return;
+    try {
+        const res = await fetch('https://itunes.apple.com/search?term=lofi&limit=10&media=music');
+        const data = await res.json();
+        list.innerHTML = '';
+        data.results.forEach(track => {
+            const item = document.createElement('div');
+            item.className = 'music-item';
+            item.innerHTML = `
+                <img src="${track.artworkUrl100}" alt="cover">
+                <div class="music-item-info">
+                    <div class="music-item-title">${track.trackName}</div>
+                    <div class="music-item-artist">${track.artistName}</div>
+                </div>
+            `;
+            item.onclick = () => playMusic(track);
+            list.appendChild(item);
+        });
+    } catch (e) {
+        list.innerHTML = '<div style="text-align:center; padding: 40px; color:var(--text-dim);">Failed to load music.</div>';
+    }
+}
+
+function playMusic(track) {
+    document.getElementById('music-title').textContent = track.trackName;
+    document.getElementById('music-artist').textContent = track.artistName;
+    const cover = document.getElementById('music-cover');
+    cover.src = track.artworkUrl100;
+    cover.style.display = 'block';
+    const audio = document.getElementById('audio-player');
+    audio.src = track.previewUrl;
+    audio.play();
+}
+
+// ── MESSAGES APP ──
+const chatForm = document.getElementById('chat-form');
+if (chatForm) {
+    chatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = document.getElementById('chat-input');
+        const text = input.value.trim();
+        if (!text) return;
+        
+        const history = document.getElementById('chat-history');
+        const sentBubble = document.createElement('div');
+        sentBubble.className = 'chat-bubble sent';
+        sentBubble.textContent = text;
+        history.appendChild(sentBubble);
+        input.value = '';
+        history.scrollTop = history.scrollHeight;
+        
+        setTimeout(() => {
+            const replies = ["That sounds awesome!", "I'll get back to you soon.", "Thanks for visiting my portfolio!", "Nice to meet you!"];
+            const replyBubble = document.createElement('div');
+            replyBubble.className = 'chat-bubble received';
+            replyBubble.textContent = replies[Math.floor(Math.random() * replies.length)];
+            history.appendChild(replyBubble);
+            history.scrollTop = history.scrollHeight;
+        }, 1000);
+    });
+}
