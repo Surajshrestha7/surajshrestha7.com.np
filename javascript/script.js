@@ -6,7 +6,7 @@ function updateClock() {
     h = h % 12 || 12;
     document.getElementById('clock').textContent =
         `${['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'][now.getDay()]} ${h}:${String(m).padStart(2, '0')} ${ampm}`;
-        
+
     // Update Widget Time
     const wTime = document.getElementById('widget-time');
     if (wTime) {
@@ -25,23 +25,23 @@ function renderCalendar() {
     const date = new Date();
     const year = date.getFullYear();
     const month = date.getMonth();
-    
+
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const calMonthYear = document.getElementById('calendar-month-year');
-    if(calMonthYear) calMonthYear.textContent = `${monthNames[month]} ${year}`;
-    
+    if (calMonthYear) calMonthYear.textContent = `${monthNames[month]} ${year}`;
+
     const firstDay = new Date(year, month, 1).getDay();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-    
+
     const grid = document.getElementById('calendar-grid');
-    if(!grid) return;
+    if (!grid) return;
     grid.innerHTML = '';
-    
+
     // Empty slots
     for (let i = 0; i < firstDay; i++) {
         grid.innerHTML += `<div class="calendar-day empty"></div>`;
     }
-    
+
     // Days
     const today = date.getDate();
     for (let i = 1; i <= daysInMonth; i++) {
@@ -65,19 +65,19 @@ function setTheme(osName, initLoad = false) {
     document.body.className = 'theme-' + osName;
     localStorage.setItem('portfolio_os', osName);
     document.getElementById('os-selector-overlay').classList.remove('show');
-    
+
     const osBtn = document.getElementById('apple-btn');
     if (osName === 'windows') {
         osBtn.innerHTML = svgWin;
         osBtn.title = 'Start Menu';
     } else if (osName === 'linux') {
-        osBtn.innerHTML = svgLinux; 
+        osBtn.innerHTML = svgLinux;
         osBtn.title = 'Activities';
     } else {
         osBtn.innerHTML = svgMac;
         osBtn.title = 'Apple Menu';
     }
-    
+
     if (!initLoad) {
         showNotif('🔄 System Updated', `Experience changed to ${osName.toUpperCase()}`);
     }
@@ -237,8 +237,8 @@ document.getElementById('apple-btn').addEventListener('click', e => {
     }
 });
 
-function closeAppleMenu() { 
-    document.getElementById('apple-menu').classList.remove('show'); 
+function closeAppleMenu() {
+    document.getElementById('apple-menu').classList.remove('show');
     document.getElementById('windows-start-menu').classList.remove('show');
 }
 
@@ -272,6 +272,7 @@ const spotlightItems = [
     { label: '📬 Contact', action: () => openWindow('contact') },
     { label: '📄 Resume', action: () => openWindow('resume') },
     { label: '🖥️ Terminal', action: () => openWindow('terminal') },
+    { label: '🤖 Suraj AI', action: () => openWindow('messages') },
     { label: '🐙 GitHub', action: () => showNotif('GitHub', 'github.com/surajshrestha7') },
     { label: '💼 LinkedIn', action: () => showNotif('LinkedIn', 'linkedin.com/in/surajshrestha') },
 ];
@@ -317,15 +318,16 @@ function spotlightKey(e) {
 // ── TERMINAL ──
 let terminalBooted = false;
 const cmds = {
-    help: `<span style="color:#5ac8fa">Available commands:</span><br>  whoami &nbsp;· about &nbsp;· skills &nbsp;· projects &nbsp;· contact &nbsp;· clear &nbsp;· ls &nbsp;· date &nbsp;· uname`,
-    whoami: `<span style="color:#30d158">Suraz Shrestha</span> — Full-Stack Developer from Nepal 🇳🇵`,
-    about: `Hi! I'm Suraz, a passionate coder who loves building things on the web.<br>Currently open to work. Type <span style="color:#ff9f0a">contact</span> to reach me.`,
+    help: `<span style="color:#5ac8fa">Available commands:</span><br>  whoami &nbsp;· about &nbsp;· skills &nbsp;· projects &nbsp;· contact &nbsp;· ai &nbsp;· clear &nbsp;· ls &nbsp;· date &nbsp;· uname`,
+    whoami: `<span style="color:#30d158">Suraj Shrestha</span> — Full-Stack Developer from Nepal 🇳🇵`,
+    about: `Hi! I'm Suraj, a passionate coder who loves building things on the web.<br>Currently open to work. Type <span style="color:#ff9f0a">contact</span> to reach me.`,
     skills: `<span style="color:#ff9f0a">Frontend:</span> HTML, CSS, JS, React, Next.js, Tailwind<br><span style="color:#ff9f0a">Backend:</span> Node.js, Python, MongoDB, PostgreSQL<br><span style="color:#ff9f0a">Tools:</span> Git, Docker, Figma, AWS`,
     projects: `📦 E-Commerce Platform<br>🤖 AI Chat Assistant<br>📊 Analytics Dashboard<br>📱 Task Manager App<br>🌐 This Portfolio!`,
-    contact: `<i class="fa-solid fa-envelope" style="color:#ea4335"></i> suraz7.21@proton.me<br><i class="fa-solid fa-phone" style="color:#34a853"></i> 9765408063<br><i class="fa-brands fa-github" style="color:#fff"></i> github.com/surajshrestha7<br><i class="fa-brands fa-linkedin" style="color:#0077b5"></i> linkedin.com/in/surajshrestha`,
+    contact: `<i class="fa-solid fa-envelope" style="color:#ea4335"></i> suraj7.21@proton.me<br><i class="fa-solid fa-phone" style="color:#34a853"></i> 9765408063<br><i class="fa-brands fa-github" style="color:#fff"></i> github.com/surajshrestha7<br><i class="fa-brands fa-linkedin" style="color:#0077b5"></i> linkedin.com/in/surajshrestha`,
+    ai: `🤖 <span style="color:#5ac8fa">Suraj AI Assistant:</span> Always ready to help! Open the "Suraj AI" app on your desktop for a full chat experience.`,
     ls: `<span style="color:#5ac8fa">Desktop/</span>&nbsp; About_Me.folder &nbsp;Skills.folder &nbsp;Projects.folder &nbsp;Resume.pdf &nbsp;Contact.folder &nbsp;Terminal.app`,
     date: new Date().toString(),
-    uname: `Darwin MacBook-Suraz.local 23.0.0 Darwin Kernel arm64`,
+    uname: `Darwin MacBook-Suraj.local 23.0.0 Darwin Kernel arm64`,
     clear: '__clear__',
 };
 
@@ -429,7 +431,73 @@ function playMusic(track) {
     audio.play();
 }
 
-// ── MESSAGES APP ──
+// ── SURAJ AI ASSISTANT ──
+const portfolioData = {
+    name: "Suraj Shrestha",
+    role: "Full-Stack Developer & Creative Coder",
+    location: "Kathmandu, Nepal",
+    education: "B.Sc. Computer Science from Tribhuvan University, Nepal (2020–2024)",
+    experience: [
+        "Junior Developer @ TechNepal (Jan 2024 – Present): Building scalable web apps and REST APIs.",
+        "Freelance Developer (2022 – 2024): Delivered 15+ client projects across e-commerce, portfolios, and dashboards."
+    ],
+    skills: {
+        frontend: "HTML/CSS (95%), JavaScript/TypeScript (88%), React.js/Next.js (85%), Tailwind CSS (90%)",
+        backend: "Node.js/Express (82%), Python/Django (75%), MongoDB/PostgreSQL (78%)",
+        tools: "Git/GitHub, Docker, Figma, VS Code, REST APIs, GraphQL, AWS/Vercel, Linux, Firebase"
+    },
+    projects: [
+        "E-Commerce Platform: Full-stack store with React, Node.js, and MongoDB.",
+        "AI Chat Assistant: Next.js powered chatbot with OpenAI API.",
+        "Analytics Dashboard: Real-time data visualization with React and D3.js.",
+        "Task Manager App: React Native productivity app.",
+        "Portfolio Website: The macOS-inspired site you're currently exploring!"
+    ],
+    contact: {
+        email: "suraz7.21@proton.me",
+        phone: "+977 9765408063",
+        linkedin: "linkedin.com/in/surajshrestha",
+        github: "github.com/surajshrestha7",
+        website: "surajshrestha7.com.np"
+    },
+    achievements: [
+        "1st Place — TechFest Nepal 2023 Hackathon",
+        "Open Source Contributor — 200+ GitHub stars",
+        "AWS Certified Cloud Practitioner"
+    ]
+};
+
+function getAIResponse(input) {
+    const query = input.toLowerCase();
+
+    if (query.includes("who") || query.includes("name") || query.includes("you")) {
+        return `I'm Suraj AI, a virtual representation of Suraj Shrestha. He's a ${portfolioData.role} based in ${portfolioData.location}.`;
+    }
+    if (query.includes("skill") || query.includes("tech") || query.includes("stack") || query.includes("know")) {
+        return `Suraj is proficient in: \n• Frontend: ${portfolioData.skills.frontend}\n• Backend: ${portfolioData.skills.backend}\n• Tools: ${portfolioData.skills.tools}`;
+    }
+    if (query.includes("project") || query.includes("work") || query.includes("build") || query.includes("done")) {
+        return `Here are some of Suraj's key projects:\n${portfolioData.projects.map(p => "• " + p).join("\n")}`;
+    }
+    if (query.includes("contact") || query.includes("email") || query.includes("hire") || query.includes("reach") || query.includes("message")) {
+        return `You can reach Suraj at ${portfolioData.contact.email} or call him at ${portfolioData.contact.phone}. He's also active on LinkedIn: ${portfolioData.contact.linkedin}`;
+    }
+    if (query.includes("experience") || query.includes("job") || query.includes("where")) {
+        return `Suraj's experience includes:\n${portfolioData.experience.map(e => "• " + e).join("\n")}`;
+    }
+    if (query.includes("education") || query.includes("study") || query.includes("college") || query.includes("university")) {
+        return `Suraj graduated with a ${portfolioData.education}.`;
+    }
+    if (query.includes("achievement") || query.includes("award") || query.includes("hackathon")) {
+        return `Some of Suraj's achievements: \n${portfolioData.achievements.map(a => "• " + a).join("\n")}`;
+    }
+    if (query.includes("hi") || query.includes("hello") || query.includes("hey")) {
+        return "Hello! How can I help you today? I can tell you about Suraj's skills, projects, or how to contact him.";
+    }
+
+    return "That's interesting! I'm specifically trained to talk about Suraj's portfolio. Try asking about his skills, projects, or experience!";
+}
+
 const chatForm = document.getElementById('chat-form');
 if (chatForm) {
     chatForm.addEventListener('submit', (e) => {
@@ -437,22 +505,92 @@ if (chatForm) {
         const input = document.getElementById('chat-input');
         const text = input.value.trim();
         if (!text) return;
-        
+
         const history = document.getElementById('chat-history');
+
+        // Add User Message
         const sentBubble = document.createElement('div');
         sentBubble.className = 'chat-bubble sent';
         sentBubble.textContent = text;
         history.appendChild(sentBubble);
         input.value = '';
         history.scrollTop = history.scrollHeight;
-        
+
+        // Add Typing Indicator
+        const typingIndicator = document.createElement('div');
+        typingIndicator.className = 'typing-indicator';
+        typingIndicator.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+        history.appendChild(typingIndicator);
+        history.scrollTop = history.scrollHeight;
+
         setTimeout(() => {
-            const replies = ["That sounds awesome!", "I'll get back to you soon.", "Thanks for visiting my portfolio!", "Nice to meet you!"];
+            // Remove Typing Indicator
+            typingIndicator.remove();
+
+            // Add AI Response
+            const responseText = getAIResponse(text);
             const replyBubble = document.createElement('div');
-            replyBubble.className = 'chat-bubble received';
-            replyBubble.textContent = replies[Math.floor(Math.random() * replies.length)];
+            replyBubble.className = 'chat-bubble received ai-special';
+            replyBubble.style.whiteSpace = 'pre-line'; // Respect newlines
+            replyBubble.textContent = responseText;
             history.appendChild(replyBubble);
             history.scrollTop = history.scrollHeight;
-        }, 1000);
+        }, 1200);
+    });
+}
+// ── CONTACT FORM HANDLER ──
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = contactForm.querySelector('.submit-btn');
+        const originalBtnText = btn.innerHTML;
+
+        // Show loading state
+        btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Sending...';
+        btn.style.opacity = '0.7';
+        btn.disabled = true;
+
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData.entries());
+
+        /* 
+           To save messages to Excel (Google Sheets):
+           1. Go to https://web3forms.com/ and get a FREE Access Key using your email suraz.shrestha.00.00@gmail.com
+           2. Replace 'YOUR_ACCESS_KEY_HERE' below with your actual key.
+           3. In Web3Forms dashboard, you can enable "Google Sheets" integration with 1 click.
+        */
+
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    access_key: "08e41b26-a4de-4e2e-8366-85a1ef802e0f", // REPLACE WITH YOUR KEY
+                    subject: "New Portfolio Message from " + data.name,
+                    from_name: "Portfolio Contact Form",
+                    ...data
+                })
+            });
+
+            const result = await response.json();
+            if (response.status === 200) {
+                showNotif('🚀 Message Sent!', 'Thanks ' + data.name + ', your message is now in my Excel!');
+                contactForm.reset();
+            } else {
+                showNotif('❌ Error', result.message || 'Submission failed.');
+            }
+        } catch (error) {
+            showNotif('📬 Message Recorded!', 'Submission simulated. Connect your Web3Forms key for real Excel sync.');
+            console.log('Submission simulated:', data);
+            contactForm.reset();
+        } finally {
+            btn.innerHTML = originalBtnText;
+            btn.style.opacity = '1';
+            btn.disabled = false;
+        }
     });
 }

@@ -4,7 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suraz Shrestha — Portfolio</title>
+    <title>Suraj Shrestha — Full-Stack Developer & Creative Coder</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+        content="Portfolio of Suraj Shrestha (Suraz), a Full-Stack Developer and Creative Coder from Nepal. Specializing in React, Node.js, and building modern web experiences.">
+    <meta name="keywords"
+        content="Suraj Shrestha, Suraz Shrestha, Full-Stack Developer, Web Developer Nepal, React Developer, Next.js, Kathmandu, Portfolio, Creative Coding, Nepal">
+    <meta name="author" content="Suraj Shrestha">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://surajshrestha7.com.np/">
+    <meta property="og:title" content="Suraj Shrestha — Full-Stack Developer & Creative Coder">
+    <meta property="og:description"
+        content="Explore the macOS-inspired portfolio of Suraj Shrestha, a Full-Stack Developer from Nepal.">
+    <meta property="og:image" content="https://surajshrestha7.com.np/img/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://surajshrestha7.com.np/">
+    <meta property="twitter:title" content="Suraj Shrestha — Full-Stack Developer & Creative Coder">
+    <meta property="twitter:description"
+        content="Explore the macOS-inspired portfolio of Suraj Shrestha, a Full-Stack Developer from Nepal.">
+    <meta property="twitter:image" content="https://surajshrestha7.com.np/img/og-image.png">
+
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -12,9 +37,45 @@
 
     <!-- fav icon -->
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="canonical" href="https://surajshrestha7.com.np/" />
 </head>
 
 <body>
+    <!-- SEO Hidden Content -->
+    <main class="sr-only">
+        <h1>Suraj Shrestha (Suraz) Portfolio</h1>
+        <p>Full-Stack Developer & Creative Coder based in Kathmandu, Nepal.</p>
+        <section>
+            <h2>About Me</h2>
+            <p>I'm Suraj Shrestha, a passionate developer from Nepal building beautiful, functional digital experiences.
+                I specialize in building full-stack web applications with modern frameworks like React.js, Next.js, and
+                Node.js.</p>
+        </section>
+        <section>
+            <h2>Technical Skills</h2>
+            <ul>
+                <li>Frontend: HTML, CSS, JavaScript, TypeScript, React.js, Next.js, Tailwind CSS</li>
+                <li>Backend: Node.js, Express, Python, Django, MongoDB, PostgreSQL</li>
+                <li>Tools: Git, Docker, Figma, AWS, Vercel, Firebase</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Featured Projects</h2>
+            <ul>
+                <li>E-Commerce Platform: Full-stack online store with React and Node.js.</li>
+                <li>AI Chat Assistant: AI-powered chatbot interface.</li>
+                <li>Analytics Dashboard: Real-time data visualization dashboard.</li>
+                <li>Task Manager App: Cross-platform productivity app.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Contact Information</h2>
+            <p>Email: suraz7.21@proton.me</p>
+            <p>Location: Kathmandu, Nepal</p>
+            <p>GitHub: github.com/surajshrestha7</p>
+            <p>LinkedIn: linkedin.com/in/surajshrestha</p>
+        </section>
+    </main>
 
     <!-- BOOT SCREEN -->
     <div id="boot-screen">
@@ -33,7 +94,7 @@
     <div id="menubar">
         <div class="menubar-left">
             <div class="os-logo" id="apple-btn" title="System Menu"></div>
-            <div class="menu-item bold">Suraz Shrestha</div>
+            <div class="menu-item bold">Suraj Shrestha</div>
             <div class="menu-item" onclick="openWindow('about')">About</div>
             <div class="menu-item" onclick="openWindow('skills')">Skills</div>
             <div class="menu-item" onclick="openWindow('projects')">Projects</div>
@@ -49,7 +110,7 @@
 
     <!-- APPLE MENU DROPDOWN -->
     <div id="apple-menu">
-        <div class="apple-menu-item" onclick="openWindow('about')">😊 About Suraz Shrestha</div>
+        <div class="apple-menu-item" onclick="openWindow('about')">😊 About Suraj Shrestha</div>
         <div class="apple-menu-divider"></div>
         <div class="apple-menu-item" onclick="showSpotlight()">🔍 Spotlight Search</div>
         <div class="apple-menu-item" onclick="openWindow('skills')">⚙️ System Preferences (Skills)</div>
@@ -107,7 +168,7 @@
         <div class="win-start-bottom">
             <div class="win-profile" onclick="openWindow('about'); closeAppleMenu();">
                 <div class="win-avatar">S</div>
-                <span>Suraz Shrestha</span>
+                <span>Suraj Shrestha</span>
             </div>
             <div class="win-power" onclick="showOSSelector()" title="Change OS">⏻</div>
         </div>
@@ -116,7 +177,9 @@
     <!-- DESKTOP -->
     <div id="desktop">
         <div class="desktop-icon" ondblclick="openWindow('about')">
-            <div class="icon-img folder-icon"></div>
+            <div class="icon-img"
+                style="background-image: url('img/about-me.png'); background-size: cover; background-position: center; border-radius: 12px;">
+            </div>
             <div class="icon-label">About Me</div>
         </div>
         <div class="desktop-icon" ondblclick="openWindow('skills')">
@@ -150,52 +213,60 @@
             <div class="icon-label">Terminal</div>
         </div>
         <!-- Social Media Folders -->
-        <div class="desktop-icon" ondblclick="window.open('https://facebook.com', '_blank')">
-            <div class="icon-img folder-icon" style="background:linear-gradient(160deg,#1877f2,#0c5ec7);box-shadow:0 4px 16px rgba(24,119,242,0.4);">
+        <div class="desktop-icon" ondblclick="window.open('https://www.facebook.com/suraz.shrestha.918292', '_blank')">
+            <div class="icon-img folder-icon"
+                style="background:linear-gradient(160deg,#1877f2,#0c5ec7);box-shadow:0 4px 16px rgba(24,119,242,0.4);">
                 <i class="fa-brands fa-facebook-f" style="color:white;font-size:28px;"></i>
             </div>
             <div class="icon-label">Facebook</div>
         </div>
         <div class="desktop-icon" ondblclick="window.open('https://instagram.com', '_blank')">
-            <div class="icon-img folder-icon" style="background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);box-shadow:0 4px 16px rgba(220,39,67,0.4);">
+            <div class="icon-img folder-icon"
+                style="background:linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);box-shadow:0 4px 16px rgba(220,39,67,0.4);">
                 <i class="fa-brands fa-instagram" style="color:white;font-size:30px;"></i>
             </div>
             <div class="icon-label">Instagram</div>
         </div>
-        <div class="desktop-icon" ondblclick="window.open('https://linkedin.com/in/surajshrestha', '_blank')">
-            <div class="icon-img folder-icon" style="background:linear-gradient(160deg,#0077b5,#005e93);box-shadow:0 4px 16px rgba(0,119,181,0.4);">
+        <div class="desktop-icon"
+            ondblclick="window.open('https://www.linkedin.com/in/suraj-shrestha-938b8a2bb/', '_blank')">
+            <div class="icon-img folder-icon"
+                style="background:linear-gradient(160deg,#0077b5,#005e93);box-shadow:0 4px 16px rgba(0,119,181,0.4);">
                 <i class="fa-brands fa-linkedin-in" style="color:white;font-size:28px;"></i>
             </div>
             <div class="icon-label">LinkedIn</div>
         </div>
         <div class="desktop-icon" ondblclick="window.open('https://github.com/surajshrestha7', '_blank')">
-            <div class="icon-img folder-icon" style="background:linear-gradient(160deg,#333,#111);box-shadow:0 4px 16px rgba(0,0,0,0.4);">
+            <div class="icon-img folder-icon"
+                style="background:linear-gradient(160deg,#333,#111);box-shadow:0 4px 16px rgba(0,0,0,0.4);">
                 <i class="fa-brands fa-github" style="color:white;font-size:30px;"></i>
             </div>
             <div class="icon-label">GitHub</div>
         </div>
-        
+
         <!-- App Icons -->
         <div class="desktop-icon" ondblclick="openWindow('music')">
-            <div class="icon-img" style="background:linear-gradient(160deg,#ff2a5f,#ff2a5f);box-shadow:0 4px 16px rgba(255,42,95,0.4);">
+            <div class="icon-img"
+                style="background:linear-gradient(160deg,#ff2a5f,#ff2a5f);box-shadow:0 4px 16px rgba(255,42,95,0.4);">
                 <i class="fa-solid fa-music" style="color:white;font-size:26px;"></i>
             </div>
             <div class="icon-label">Music</div>
         </div>
         <div class="desktop-icon" ondblclick="openWindow('certificates')">
-            <div class="icon-img folder-icon" style="background:linear-gradient(160deg,#ffb300,#f57c00);box-shadow:0 4px 16px rgba(255,179,0,0.4);">
+            <div class="icon-img folder-icon"
+                style="background:linear-gradient(160deg,#ffb300,#f57c00);box-shadow:0 4px 16px rgba(255,179,0,0.4);">
                 <i class="fa-solid fa-award" style="color:white;font-size:28px;"></i>
             </div>
             <div class="icon-label">Certificates</div>
         </div>
         <div class="desktop-icon" ondblclick="openWindow('messages')">
-            <div class="icon-img" style="background:linear-gradient(160deg,#34c759,#28a745);box-shadow:0 4px 16px rgba(52,199,89,0.4);">
-                <i class="fa-solid fa-message" style="color:white;font-size:26px;"></i>
+            <div class="icon-img"
+                style="background-image: url('img/suraz_ai.png'); background-size: cover; background-position: center; border-radius: 12px; box-shadow: 0 4px 16px rgba(88,86,214,0.3);">
             </div>
-            <div class="icon-label">Messages</div>
+            <div class="icon-label">Suraj AI</div>
         </div>
         <div class="desktop-icon" ondblclick="openWindow('browser')">
-            <div class="icon-img" style="background:linear-gradient(160deg,#0a84ff,#0069d9);box-shadow:0 4px 16px rgba(10,132,255,0.4);">
+            <div class="icon-img"
+                style="background:linear-gradient(160deg,#0a84ff,#0069d9);box-shadow:0 4px 16px rgba(10,132,255,0.4);">
                 <i class="fa-regular fa-compass" style="color:white;font-size:28px;"></i>
             </div>
             <div class="icon-label">Safari</div>
@@ -209,15 +280,17 @@
             <div id="widget-time">--:--</div>
             <div id="widget-date">--</div>
         </div>
-        
+
         <!-- Weather Widget -->
-        <div class="widget weather-widget" onclick="window.open('https://weather.com', '_blank')" style="cursor: pointer;">
+        <div class="widget weather-widget" onclick="window.open('https://weather.com', '_blank')"
+            style="cursor: pointer;">
             <div class="weather-top">
-                <div class="weather-icon"><i class="fa-solid fa-cloud-sun" style="color:#ffcc00; font-size:32px;"></i></div>
+                <div class="weather-icon"><i class="fa-solid fa-cloud-sun" style="color:#ffcc00; font-size:32px;"></i>
+                </div>
                 <div class="weather-temp">24°</div>
             </div>
             <div class="weather-desc">Sunny in Kathmandu</div>
-            <div class="weather-highlow">H: 28°  L: 16°</div>
+            <div class="weather-highlow">H: 28° L: 16°</div>
         </div>
 
         <!-- Calendar Widget -->
@@ -276,22 +349,24 @@
                 <div class="tl yellow" onclick="minWindow('messages')"></div>
                 <div class="tl green" onclick="maxWindow('messages')"></div>
             </div>
-            <div class="window-title">Messages</div>
+            <div class="window-title">Suraz AI Assistant</div>
         </div>
         <div class="window-body messages-body" style="padding: 0; display: flex; flex-direction: column;">
             <div class="chat-header">
-                <div class="chat-avatar">S</div>
+                <div class="chat-avatar" style="background: linear-gradient(135deg, #5856d6, #5ac8fa);">🤖</div>
                 <div>
-                    <div style="font-weight: 600;">Suraz Shrestha</div>
-                    <div style="font-size: 11px; color: #34c759;">Online</div>
+                    <div style="font-weight: 600;">Suraj AI</div>
+                    <div style="font-size: 11px; color: #34c759;">Always active</div>
                 </div>
             </div>
             <div class="chat-history" id="chat-history">
-                <div class="chat-bubble received">Hey there! Welcome to my portfolio. Feel free to leave a message.</div>
+                <div class="chat-bubble received">Hello! I'm Suraj's AI assistant. Ask me anything about his skills,
+                    projects, or experience!
+                </div>
             </div>
             <form class="chat-input-area" id="chat-form">
-                <input type="text" id="chat-input" placeholder="iMessage..." required autocomplete="off">
-                <button type="submit" class="chat-send"><i class="fa-solid fa-arrow-up"></i></button>
+                <input type="text" id="chat-input" placeholder="Ask about Suraz..." required autocomplete="off">
+                <button type="submit" class="chat-send"><i class="fa-solid fa-paper-plane"></i></button>
             </form>
         </div>
         <div class="window-resize"></div>
@@ -314,18 +389,27 @@
                 google.com
             </div>
         </div>
-        <div class="window-body" style="background: white; color: #333; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-bottom: 50px;">
-            <div style="font-size: 60px; font-weight: bold; color: #4285F4; letter-spacing: -2px; margin-bottom: 24px; font-family: sans-serif;">
-                G<span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span>g<span style="color:#34A853">l</span><span style="color:#EA4335">e</span>
+        <div class="window-body"
+            style="background: white; color: #333; display: flex; flex-direction: column; align-items: center; justify-content: center; padding-bottom: 50px;">
+            <div
+                style="font-size: 60px; font-weight: bold; color: #4285F4; letter-spacing: -2px; margin-bottom: 24px; font-family: sans-serif;">
+                G<span style="color:#EA4335">o</span><span style="color:#FBBC05">o</span>g<span
+                    style="color:#34A853">l</span><span style="color:#EA4335">e</span>
             </div>
-            <div style="display: flex; align-items: center; background: white; border: 1px solid #dfe1e5; box-shadow: 0 1px 6px rgba(32,33,36,.28); border-radius: 24px; width: 80%; max-width: 500px; padding: 10px 20px;">
+            <div
+                style="display: flex; align-items: center; background: white; border: 1px solid #dfe1e5; box-shadow: 0 1px 6px rgba(32,33,36,.28); border-radius: 24px; width: 80%; max-width: 500px; padding: 10px 20px;">
                 <i class="fa-solid fa-magnifying-glass" style="color: #9aa0a6;"></i>
-                <input type="text" style="flex: 1; border: none; outline: none; font-size: 16px; margin-left: 10px;" placeholder="Search Google or type a URL">
+                <input type="text" style="flex: 1; border: none; outline: none; font-size: 16px; margin-left: 10px;"
+                    placeholder="Search Google or type a URL">
                 <i class="fa-solid fa-microphone" style="color: #4285F4; margin-left: 10px;"></i>
             </div>
             <div style="margin-top: 24px; display: flex; gap: 12px;">
-                <button style="background: #f8f9fa; border: 1px solid #f8f9fa; border-radius: 4px; color: #3c4043; padding: 0 16px; height: 36px; cursor: pointer; font-size: 14px;">Google Search</button>
-                <button style="background: #f8f9fa; border: 1px solid #f8f9fa; border-radius: 4px; color: #3c4043; padding: 0 16px; height: 36px; cursor: pointer; font-size: 14px;">I'm Feeling Lucky</button>
+                <button
+                    style="background: #f8f9fa; border: 1px solid #f8f9fa; border-radius: 4px; color: #3c4043; padding: 0 16px; height: 36px; cursor: pointer; font-size: 14px;">Google
+                    Search</button>
+                <button
+                    style="background: #f8f9fa; border: 1px solid #f8f9fa; border-radius: 4px; color: #3c4043; padding: 0 16px; height: 36px; cursor: pointer; font-size: 14px;">I'm
+                    Feeling Lucky</button>
             </div>
         </div>
         <div class="window-resize"></div>
@@ -385,7 +469,7 @@
                 <div class="avatar-wrap">S</div>
                 <div>
                     <div class="win-section">
-                        <h1>Suraz Shrestha</h1>
+                        <h1>Suraj Shrestha</h1>
                     </div>
                     <p style="margin:0;font-size:14px;color:#5ac8fa;font-weight:500;">Full-Stack Developer & Creative
                         Coder</p>
@@ -607,13 +691,23 @@
                 <i class="fa-solid fa-location-dot"
                     style="color: #ea4335; font-size: 16px; width: 20px; text-align: center;"></i> Kathmandu, Nepal
             </div>
-            <div style="margin-top:16px;text-align:center;">
-                <div style="display:inline-block;padding:10px 28px;background:var(--accent);border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;transition:opacity 0.2s;"
-                    onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'"
-                    onclick="showNotif('Message Sent!','Thanks for reaching out, Suraz will reply soon!')">
-                    <i class="fa-solid fa-paper-plane" style="margin-right: 6px;"></i> Say Hello
+            <form class="contact-form" id="contact-form">
+                <div class="form-group">
+                    <label for="contact-name">Name</label>
+                    <input type="text" id="contact-name" name="name" placeholder="Your Name" required>
                 </div>
-            </div>
+                <div class="form-group">
+                    <label for="contact-email">Email</label>
+                    <input type="email" id="contact-email" name="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-message">Message</label>
+                    <textarea id="contact-message" name="message" placeholder="Type your message here..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fa-solid fa-paper-plane"></i> Send Message
+                </button>
+            </form>
         </div>
         <div class="window-resize"></div>
     </div>
@@ -633,7 +727,7 @@
                 style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:20px;margin-bottom:16px;">
                 <div style="text-align:center;margin-bottom:16px;">
                     <div style="font-size:40px;">📄</div>
-                    <div style="font-size:18px;font-weight:700;color:white;margin-top:8px;">Suraz Shrestha</div>
+                    <div style="font-size:18px;font-weight:700;color:white;margin-top:8px;">Suraj Shrestha</div>
                     <div style="font-size:13px;color:var(--accent);">Full-Stack Developer</div>
                 </div>
                 <div class="divider"></div>
