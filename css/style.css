@@ -377,12 +377,19 @@
             inset: 28px 0 80px 0;
             z-index: 1;
             padding: 20px;
+            padding-right: 320px;
+            overflow-y: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
             display: grid;
             grid-template-columns: repeat(auto-fill, 90px);
             grid-template-rows: repeat(auto-fill, 100px);
             gap: 10px;
             align-content: start;
             justify-content: end;
+        }
+        #desktop::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
         }
 
         /* FOLDER / ICON */
